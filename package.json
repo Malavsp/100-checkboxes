@@ -1,0 +1,9 @@
+{
+  "name": "100-checboxes",
+  "version": "0.0.1",
+  "description": "",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
