@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100-CheckboX</title>
+</head>
+
+<body>
+    <div>
+        <input type="checkbox" name="checkbox-1" id="checkbox-1" class="checkbox">
+        <input type="checkbox" name="checkbox-2" id="checkbox-2" class="checkbox">
+        <input type="checkbox" name="checkbox-3" id="checkbox-3" class="checkbox">
+        <input type="checkbox" name="checkbox-4" id="checkbox-4" class="checkbox">
+        <input type="checkbox" name="checkbox-5" id="checkbox-5" class="checkbox">
+        <input type="checkbox" name="checkbox-6" id="checkbox-6" class="checkbox">
+        <input type="checkbox" name="checkbox-7" id="checkbox-7" class="checkbox">
+        <input type="checkbox" name="checkbox-8" id="checkbox-8" class="checkbox">
+        <input type="checkbox" name="checkbox-9" id="checkbox-9" class="checkbox">
+        <input type="checkbox" name="checkbox-10" id="checkbox-10" class="checkbox">
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io()
+
+        const checkboxes = document.getElementsByClassName('checkbox')
+        // console.log(checkboxes)
+        checkboxes[0].addEventListener('change', (e) => {
+            data = {
+                id: checkboxes[0].id,
+                checked: checkboxes[0].checked
+            }
+            socket.emit('checked', data)
+            console.log(data)
+        })
+
+
+        socket.on('checked', ({ id, checked }) => {
+            console.log(id, checked)
+            // document.getElementById(`${id}`).checked = checked
+        })
+    </script>
+    <!-- <script>console.log('socket', socket)</script> -->
+</body>
+
+</html>
