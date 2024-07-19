@@ -11,10 +11,17 @@ app.get("/", (req, res) => {
   res.sendFile(join(__dirname, "index.html"));
 });
 
+let states = Array(100).fill(false);
+
 io.on("connection", (socket) => {
-  // console.log("a user connected", socket);
+  console.log("New user connected");
+
+  socket.emit("initialize", states);
+
   socket.on("checked", (data) => {
-    console.log(data);
+    // console.log(data);
+    states[data.id] = data.checked;
+    // console.log(states);
     io.emit("checked", data);
   });
 });
