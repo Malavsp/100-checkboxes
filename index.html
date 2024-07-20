@@ -120,21 +120,20 @@
         const checkboxes = [...document.getElementsByClassName('checkbox')]
         // console.log(checkboxes)
 
-        socket.on('initialize', (states) => {
+        socket.on('initialize', (data) => {
             // console.log(checkboxes)
             checkboxes.forEach((box, index) => {
                 // console.log("box", box, index)
-                // console.log(box,index)
-                document.getElementById(`${box.id}`).checked = states[index]
-
+                // console.log(Boolean(states[index].state))
+                document.getElementById(`${box.id}`).checked = Boolean(data[index].state)
             });
             // console.log(states)
         })
 
-        checkboxes.forEach((checkbox, i) => {
+        checkboxes.forEach((checkbox) => {
             checkbox.addEventListener('change', (e) => {
                 data = {
-                    id: i,
+                    id: checkbox.name,
                     checked: checkbox.checked
                 }
                 // console.log(data)
@@ -145,7 +144,7 @@
 
         socket.on('checked', ({ id, checked }) => {
             // console.log(id, checked)
-            document.getElementById(`checkbox-${id + 1}`).checked = checked
+            document.getElementById(`${id}`).checked = checked
         })
     </script>
 </body>
