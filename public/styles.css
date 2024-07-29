@@ -1,0 +1,11 @@
+.checkbox {
+  width: 2%;
+  margin: 12px;
+}
+
+.container {
+  background-color: rgb(227 220 255);
+  border: 2px solid black;
+  margin-top: 26px;
+  padding: 12px;
+}
